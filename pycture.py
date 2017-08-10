@@ -5,16 +5,16 @@ import os, sys, getopt
 
 def main(argv):
     # Default parameter values
-    outputName = ''
+    outputName = cExtension = ''
     reduction = 2
     zeroFill = 0
     picNumber = 1
     directory = os.getcwd()
-    timer = False
+    timer = convert = False
 
     # Get customized parameters
     try:
-        opts, args = getopt.getopt(argv, 'hto:r:z:s:p:')
+        opts, args = getopt.getopt(argv, 'hto:r:z:s:c:p:')
     except getopt.GetoptError as err:
         # Warn about unrecognized parameters and exit
         print ("Ops... " + str(err))
@@ -34,6 +34,9 @@ def main(argv):
             zeroFill = int(arg)
         elif opt == '-s':
             picNumber = int(arg)
+        elif opt == '-c':
+            convert = True
+            cExtension = arg
         elif opt == '-p':
             if os.path.isdir(arg):
                 directory = arg
@@ -45,7 +48,7 @@ def main(argv):
 
     # picture resize
     for filename in os.listdir(directory):
-        if filename.lower().endswith(('.jpeg', '.jpg')):
+        if filename.lower().endswith(('.jpeg', '.jpg', 'png', 'tif')):
             img = Image.open(filename)
             x = img.size[0]/reduction
             y = img.size[1]/reduction
@@ -57,7 +60,10 @@ def main(argv):
                 out = name + "_" + str(picNumber).zfill(zeroFill)
             else:
                 out = outputName + "_" + str(picNumber).zfill(zeroFill)
-            newImg.save(out + ".JPEG")
+            if (convert):
+                newImg.save(out + '.' +cExtension)
+            else:
+                newImg.save(out + ".JPEG")
             picNumber += 1
 
     print "Successful picture resize."
