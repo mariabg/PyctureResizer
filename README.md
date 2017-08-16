@@ -2,8 +2,13 @@
 This script makes a copy of every picture in the directory decreasing the image size. Several parameters can be apply to customize the output.
 
 ## Example
+Run
 ```
   python pycture.py -o "2017_08_Barcelona" -r 4 -z 3 -s 96 -c png -t
+```
+or simply
+```
+  python pycture.py
 ```
 
 ## Parameters
