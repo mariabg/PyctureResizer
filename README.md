@@ -1,5 +1,5 @@
 # PyctureResizer
-This script makes a copy of every picture in the directory decreasing the image size. Several parameters can be apply to customize the output.
+This script makes a copy of every picture in the directory decreasing the image size. Several parameters can be applied to customize the output.
 
 ## Example
 Run
